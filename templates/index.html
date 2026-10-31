@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Review Analyzer</title>
+    <link rel="stylesheet"
+    href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Product Review Analyzer</h1>
+
+    <p>AI-powered Sentiment and Fake Review Detection</p>
+
+    <form method="POST">
+
+        <textarea
+            name="review"
+            placeholder="Enter your product review..."
+            required>{{ review }}</textarea>
+
+        <button type="submit">Analyze Review</button>
+
+    </form>
+
+{% if error %}
+    <p style="color: red;">{{ error }}</p>
+{% endif %}
+
+    {% if sentiment %}
+
+    <div class="results">
+
+        <h2>Analysis Results</h2>
+
+        <p><strong>Sentiment:</strong> {{ sentiment }}</p>
+
+        <p>
+            <strong>Sentiment Confidence:</strong>
+            {{ sentiment_confidence }}%
+        </p>
+
+        <p>
+            <strong>Review Classification:</strong>
+            {{ authenticity }}
+        </p>
+
+        <p>
+            <strong>Classification Confidence:</strong>
+            {{ fake_confidence }}%
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
